@@ -32,13 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //==========Rotas==========
-app.get('/', (req, res) => {
-	Post.findAll({ order: [['id', 'DESC']] }).then((posts) => {
-		res.render(__dirname + '/views/layouts/home.handlebars', { posts: posts });
-	});
+app.get('/login', (req, res) => {
+	res.render(__dirname + '/views/layouts/login.handlebars');
 });
 
-app.get('/cad', (req, res) => {
+app.get('/login/cadastrar', (req, res) => {
 	res.render(__dirname + '/views/layouts/formulario.handlebars');
 });
 
@@ -50,9 +48,15 @@ app.post('/add', (req, res) => {
 		kmVeiculo: req.body.kmVeiculo.toLocaleString('en-US'),
 		dataAbastecimento: req.body.dataAbastecimento
 	}).then(() => {
-		res.redirect('/')
+		res.redirect('/login/cadastrar/abastecimentos')
 	}).catch(() => {
 		res.send(`Houve um erro: ${erro}!`)
+	});
+});
+
+app.get('/login/cadastrar/abastecimentos', (req, res) => {
+	Post.findAll({ order: [['id', 'DESC']] }).then((posts) => {
+		res.render(__dirname + '/views/layouts/home.handlebars', { posts: posts });
 	});
 });
 
