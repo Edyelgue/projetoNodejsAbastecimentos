@@ -1,0 +1,22 @@
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th scope="col">placa</th>
+      <th scope="col">valor-litro</th>
+      <th scope="col">litros-abastecidos</th>
+      <th scope="col">km-veiculo</th>
+	    <th scope="col">data-abastecimento</th>
+    </tr>
+  </thead>
+  {{#each posts}}
+    <tbody>
+      <tr>
+      <td class="border">{{dataValues.placa}}</td> <!--PORQUE APARECE ENUMERAÇÃO DA LISTA AO INVÉS DA PLACA-->
+      <td class="border">{{#formatValorLitro dataValues.valorLitro}}{{/formatValorLitro}}</td>
+      <td class="border">{{#formatLitrosAbastecidos dataValues.litrosAbastecidos}}{{/formatLitrosAbastecidos}}</td>
+      <td class="border">{{#formatKm dataValues.kmVeiculo}}{{/formatKm}}</td>
+      <td class="border">{{#formatDate dataValues.dataAbastecimento}}{{/formatDate}}</td>
+      </tr>
+    </tbody>
+  {{/each}}
+</table>
